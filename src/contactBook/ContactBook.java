@@ -106,7 +106,7 @@ public class ContactBook {
 
     public String getNameByPhone(int phoneNumber) {
         int i = 0;
-        String result = "";
+        String result = null;
         boolean found = false;
         while (i<counter && !found)
             if (contacts[i].getPhone() == phoneNumber)

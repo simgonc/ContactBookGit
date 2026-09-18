@@ -32,7 +32,7 @@ public class Contact {
     }
 
     //Pre: otherContact != null
-    public boolean equals(Contact otherContact) {
-        return name.equals(otherContact.getName());
+    public boolean equals(int phoneNumber) {
+        return phone==phoneNumber;
     }
 }
