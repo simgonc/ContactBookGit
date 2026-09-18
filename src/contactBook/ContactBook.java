@@ -93,4 +93,27 @@ public class ContactBook {
         return contacts[currentContact++];
     }
 
+    public boolean checkDups() {
+        for(int i = 0; i < counter; i++){
+            Contact c = contacts[i];
+            for (int j = i + 1; j < counter; j++){
+                if (contacts[j].equals(c))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public String getNameByPhone(int phoneNumber) {
+        int i = 0;
+        String result = "";
+        boolean found = false;
+        while (i<counter && !found)
+            if (contacts[i].getPhone() == phoneNumber)
+                found = true;
+            else
+                i++;
+        if (found) result = contacts[i].getName();
+        return result;
+    }
 }
