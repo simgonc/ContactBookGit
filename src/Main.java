@@ -17,6 +17,7 @@ public class Main {
     public static final String CONTACT_BY_NUMBER = "GN";
     public static final String REPEATED_PHONES = "EP";
 
+
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
     public static final String NAME_NOT_EXIST = "contactBook.Contact does not exist.";
@@ -26,6 +27,7 @@ public class Main {
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String BOOK_NO_DUPS = "There are contacts that share phone numbers.";
     public static final String BOOK_HAS_DUPS = "All contacts have different phone numbers.";
+    public static final String NO_CONTACT = "Phone number does not exist.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -86,7 +88,10 @@ public class Main {
         int phoneNumber = in.nextInt();
         in.nextLine();
         String name = cBook.getNameByPhone(phoneNumber);
-        System.out.println(name);
+        if(name == null)
+            System.out.println(NO_CONTACT);
+        else
+            System.out.println(name);
     }
 
     private static String getCommand(Scanner in) {
