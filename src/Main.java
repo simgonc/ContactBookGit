@@ -14,6 +14,8 @@ public class Main {
     public static final String SET_EMAIL      = "SE";
     public static final String LIST_CONTACTS  = "LC";
     public static final String QUIT           = "Q";
+    public static final String CONTACT_BY_NUMBER = "GN";
+    public static final String REPEATED_PHONES = "EP";
 
     //Constantes que definem as mensagens para o utilizador
     public static final String CONTACT_EXISTS = "contactBook.Contact already exists.";
@@ -22,6 +24,8 @@ public class Main {
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
+    public static final String BOOK_NO_DUPS = "There are contacts that share phone numbers.";
+    public static final String BOOK_HAS_DUPS = "All contacts have different phone numbers.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
 
@@ -53,6 +57,12 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                case CONTACT_BY_NUMBER:
+                    getNameByPhone(in, cBook);
+                    break;
+                case REPEATED_PHONES:
+                    checkDups(cBook);
+                    break;
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -62,6 +72,21 @@ public class Main {
         System.out.println(QUIT_MSG);
         System.out.println();
         in.close();
+    }
+
+    private static void checkDups(ContactBook cBook) {
+        boolean hasDups = cBook.checkDups();
+        if(hasDups)
+            System.out.println(BOOK_HAS_DUPS);
+        else
+            System.out.println(BOOK_NO_DUPS);
+    }
+
+    private static void getNameByPhone(Scanner in, ContactBook cBook) {
+        int phoneNumber = in.nextInt();
+        in.nextLine();
+        String name = cBook.getNameByPhone(phoneNumber);
+        System.out.println(name);
     }
 
     private static String getCommand(Scanner in) {
