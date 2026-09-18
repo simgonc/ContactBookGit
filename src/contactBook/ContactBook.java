@@ -97,7 +97,8 @@ public class ContactBook {
         for(int i = 0; i < counter; i++){
             Contact c = contacts[i];
             for (int j = i + 1; j < counter; j++){
-                if (contacts[j].equals(c))
+                Contact other = contacts[j];
+                if (other.equals(c))
                     return true;
             }
         }
